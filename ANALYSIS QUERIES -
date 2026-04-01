@@ -1,0 +1,66 @@
+-- Q1: Total Revenue
+SELECT ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE;
+
+-- Q2: Category wise Sales
+SELECT category, 
+       COUNT(*) AS total_orders, 
+       ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE
+GROUP BY category
+ORDER BY total_revenue DESC;
+
+-- Q3: Order Status Breakdown
+SELECT status, COUNT(*) AS count
+FROM AMAZONSALE
+GROUP BY status
+ORDER BY count DESC;
+
+-- Q4: Top 10 Cities by Sales
+SELECT ship_city, 
+       ROUND(SUM(amount), 2) AS total_sales
+FROM AMAZONSALE
+GROUP BY ship_city
+ORDER BY total_sales DESC
+LIMIT 10;
+
+-- Q5: Average Order Value
+SELECT ROUND(AVG(amount), 2) AS avg_order_value
+FROM AMAZONSALE;
+
+-- Q6: Top 5 States by Revenue
+SELECT ship_state, 
+       ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE
+GROUP BY ship_state
+ORDER BY total_revenue DESC
+LIMIT 5;
+
+-- Q7: B2B vs B2C Sales
+SELECT b2b, 
+       COUNT(*) AS total_orders,
+       ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE
+GROUP BY b2b;
+
+-- Q8: Size wise Orders
+SELECT size, COUNT(*) AS total_orders
+FROM AMAZONSALE
+GROUP BY size
+ORDER BY total_orders DESC;
+
+-- Q9: Fulfilment Method wise Sales
+SELECT fulfilment,
+       COUNT(*) AS orders,
+       ROUND(SUM(amount), 2) AS revenue
+FROM AMAZONSALE
+GROUP BY fulfilment;
+
+-- Q10: Top 5 Most Selling Products (Style)
+SELECT style,
+       COUNT(*) AS total_orders,
+       ROUND(SUM(amount), 2) AS revenue
+FROM AMAZONSALE
+GROUP BY style
+ORDER BY total_orders DESC
+LIMIT 5;
