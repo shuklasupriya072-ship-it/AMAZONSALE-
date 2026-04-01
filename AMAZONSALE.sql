@@ -1,0 +1,600 @@
+-- =============================================
+-- AMAZON SALES ANALYSIS - SQL PROJECT
+-- =============================================
+
+-- Step 1: Create Table
+DROP TABLE IF EXISTS AMAZONSALE;
+
+CREATE TABLE AMAZONSALE (
+  order_id TEXT,
+  date TEXT,
+  status TEXT,
+  fulfilment TEXT,
+  sales_channel TEXT,
+  style TEXT,
+  category TEXT,
+  size TEXT,
+  asin TEXT,
+  courier_status TEXT,
+  qty INTEGER,
+  currency TEXT,
+  amount REAL,
+  ship_city TEXT,
+  ship_state TEXT,
+  ship_country TEXT,
+  b2b TEXT,
+  fulfilled_by TEXT
+);
+
+-- Step 2: Insert Data (500 rows)
+INSERT INTO AMAZONSALE VALUES ('405-8078784-5731545','04-30-22','Cancelled','Merchant','Amazon.in','SET389','Set','S','B09KXVBD7Z','Unknown','0','INR','647.62','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-9198151-1101146','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3781','Kurta','3XL','B09K3WFS32','Shipped','1','INR','406','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-0687676-7273146','04-30-22','Shipped','Amazon','Amazon.in','JNE3371','Kurta','XL','B07WV4JV4D','Shipped','1','INR','329','Navi Mumbai','MAHARASHTRA','IN','TRUE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-9615377-8133951','04-30-22','Cancelled','Merchant','Amazon.in','J0341','Western Dress','L','B099NRCT7B','Unknown','0','INR','753.33','Puducherry','PUDUCHERRY','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-1069790-7240320','04-30-22','Shipped','Amazon','Amazon.in','JNE3671','Top','3XL','B098714BZP','Shipped','1','INR','574','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-1490984-4578765','04-30-22','Shipped','Amazon','Amazon.in','SET264','Set','XL','B08YN7XDSG','Shipped','1','INR','824','Ghaziabad','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5748499-6859555','04-30-22','Shipped','Amazon','Amazon.in','J0095','Set','L','B08CMHNWBN','Shipped','1','INR','653','Chandigarh','CHANDIGARH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-7807733-3785945','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','S','B081WX4G4Q','Shipped','1','INR','399','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-5443024-5233168','04-30-22','Cancelled','Amazon','Amazon.in','SET200','Set','3XL','B08L91ZZXN','Cancelled','0','INR','0','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-4393761-0311520','04-30-22','Shipped','Amazon','Amazon.in','JNE3461','Kurta','XXL','B08B3XF5MH','Shipped','1','INR','363','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5633625-6970741','04-30-22','Shipped','Amazon','Amazon.in','JNE3160','Kurta','S','B07K3YQLF1','Shipped','1','INR','685','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4638481-6326716','04-30-22','Shipped','Amazon','Amazon.in','JNE3500','Kurta','XS','B098117DJ3','Shipped','1','INR','364','Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-5513694-8146768','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','XS','B081XCMYXJ','Shipped','1','INR','399','Amravati.','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-7955685-3083534','04-30-22','Shipped','Amazon','Amazon.in','SET182','Set','XS','B085HS947T','Shipped','1','INR','657','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-1298370-1920302','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0351','Set','L','B09CSSQY4F','Shipped','1','INR','771','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-4965581-9520319','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','PJNE3368','Kurta','6XL','B09PY99SVJ','Shipped','1','INR','544','Guntakal','ANDHRA PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-9379318-6555504','04-30-22','Shipped','Amazon','Amazon.in','JNE3721','Kurta','XXL','B099FCT65D','Shipped','1','INR','329','Jaipur','RAJASTHAN','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9013803-8009918','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XL','B081WT6GG7','Shipped','1','INR','399','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-4030358-5835511','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3697','Kurta','XXL','B098133PV5','Shipped','1','INR','458','Gurgaon','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-5957858-1051546','04-30-22','Shipped','Amazon','Amazon.in','SET254','Set','XS','B0983DDPL6','Shipped','1','INR','886','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0607769-0716360','04-30-22','Shipped','Amazon','Amazon.in','JNE3795','Kurta','3XL','B09HMXJVFS','Shipped','1','INR','517','Tiruchirappalli','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-8494550-5860325','04-30-22','Shipped','Amazon','Amazon.in','SET345','Set','M','B09KXV4BN8','Shipped','1','INR','666','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1305077-2813934','04-30-22','Shipped','Amazon','Amazon.in','JNE3373','Kurta','L','B082W7GVH7','Shipped','1','INR','376','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6019946-2909948','04-30-22','Cancelled','Merchant','Amazon.in','SET291','Set','M','B099NK55YG','Unknown','0','INR','570.48','Pune','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-3384087-4005164','04-30-22','Shipped','Amazon','Amazon.in','MEN5002','Kurta','L','B08YYYDN9R','Shipped','1','INR','499','Tezpur','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-8191138-5176316','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','NW030','Set','XS','B09G2RQSRZ','Shipped','1','INR','582','Ranchi','JHARKHAND','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-9230474-9657916','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3415','Kurta','3XL','B082W8JXJ9','Shipped','1','INR','299','Bilaspur','CHHATTISGARH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-3484251-6901959','04-30-22','Shipped','Amazon','Amazon.in','PJNE2199','Kurta','4XL','B09LD2W9XL','Shipped','1','INR','459','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-7755803-4729935','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','M','B08KRXV1QR','Shipped','1','INR','399','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-5933402-8801952','04-30-22','Cancelled','Merchant','Amazon.in','JNE2132','Kurta','3XL','B07JG3CND8','Unknown','0','INR','0','Guwahati','ASSAM','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-9040274-9291563','04-30-22','Shipped','Amazon','Amazon.in','J0341','Western Dress','S','B099NR7612','Shipped','1','INR','791','Thiruvarur','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-7056319-0979561','04-30-22','Shipped','Amazon','Amazon.in','MEN5009','Kurta','XL','B08YYTCPYX','Shipped','1','INR','499','Lucknow','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-9632124-1107550','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0011','Set','M','B08B3YNJG5','Shipped','1','INR','1233','Visakhapatnam','ANDHRA PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-1465437-0579556','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3766','Kurta','M','B09K3XR43V','Shipped','1','INR','517','Jeypur','ODISHA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-7774085-3780319','04-30-22','Shipped','Amazon','Amazon.in','JNE3373','Kurta','XL','B082W8BXW1','Shipped','1','INR','376','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2764952-1492318','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','MEN5001','Kurta','XL','B08YYRH2Q6','Shipped','1','INR','499','Lucknow','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-0272200-7784379','04-30-22','Shipped','Amazon','Amazon.in','SET345','Set','L','B09KXT4VG7','Shipped','1','INR','666','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4367956-2849158','04-30-22','Shipped','Amazon','Amazon.in','JNE3787','Kurta','S','B09RKBXM5B','Shipped','1','INR','487','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4367956-2849158','04-30-22','Shipped','Amazon','Amazon.in','JNE3543','Kurta','S','B08HHJP41L','Shipped','1','INR','368','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4242957-8599555','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Thiruvananthapuram','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7165704-5643524','04-30-22','Shipped','Amazon','Amazon.in','J0211','Ethnic Dress','XXL','B09831VWD9','Shipped','1','INR','699','Greater Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8210765-3935569','04-30-22','Shipped','Amazon','Amazon.in','J0401','Western Dress','3XL','B09SDXZBGX','Shipped','1','INR','885','Jabalpur','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-7398201-3869914','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE2153','Kurta','M','B0794YR85H','Shipped','1','INR','424','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-3478480-0881162','04-30-22','Shipped','Amazon','Amazon.in','SET360','Set','M','B09QJM1D7F','Shipped','1','INR','1126','Lucknow','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-7595162-9129931','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','L','B08XQ8MCKP','Shipped','1','INR','788','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6876154-6233146','04-30-22','Shipped','Amazon','Amazon.in','SET183','Set','S','B08B3Z38TJ','Shipped','1','INR','759','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3917043-5314763','04-30-22','Shipped','Amazon','Amazon.in','J0230','Set','L','B08XNDL1DL','Shipped','1','INR','1146','Ongole','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-9281152-6213100','04-30-22','Shipped','Amazon','Amazon.in','JNE3744','Top','S','B0986ZHR9D','Shipped','1','INR','665','Secunderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-3496411-3082707','04-30-22','Shipped','Amazon','Amazon.in','JNE3510','Kurta','S','B08WPTJBBD','Shipped','1','INR','429','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-9208368-0157156','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','M','B081WVMMCY','Shipped','1','INR','399','Kewalpur','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-2137113-0982751','04-30-22','Shipped','Amazon','Amazon.in','J0186','Set','S','B091Z81MLX','Shipped','1','INR','848','Cuttack','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-3628566-9688333','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','M','B0894XH3LN','Shipped','1','INR','654','Badlapur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7138000-9728362','04-30-22','Shipped','Amazon','Amazon.in','SET282','Set','M','B09CTCDDQ4','Shipped','1','INR','1033','Dimapur','NAGALAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-1752649-2274748','04-30-22','Shipped','Amazon','Amazon.in','JNE1407','Kurta','XL','B01M4IAS51','Shipped','1','INR','390','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-7944191-1869101','04-30-22','Shipped','Amazon','Amazon.in','J0301','Top','L','B099S6795L','Shipped','1','INR','493','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4063876-9566742','04-30-22','Shipped','Amazon','Amazon.in','JNE3869','Western Dress','S','B09RK67Y51','Shipped','1','INR','721','Warangal','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-0752752-4656334','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','XS','B09NQ4DD29','Shipped','1','INR','597','Dhaulpur','RAJASTHAN','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8879861-2081117','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Guwahati','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8089333-7941903','04-30-22','Shipped','Amazon','Amazon.in','SET279','Set','S','B09CT6L67S','Shipped','1','INR','888','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3072652-6805159','04-30-22','Shipped','Amazon','Amazon.in','JNE2014','Kurta','XXL','B077MF72BK','Shipped','1','INR','353','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2592464-6846743','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','NW005','Set','XL','B0922WJ27J','Shipped','1','INR','599','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-2262140-4696366','04-30-22','Shipped','Amazon','Amazon.in','JNE2270','Kurta','M','B07H7FZD32','Shipped','1','INR','518','Nagpur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-2262140-4696366','04-30-22','Shipped','Amazon','Amazon.in','JNE3579','Kurta','M','B08QGK2BS2','Shipped','1','INR','295','Nagpur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-3594372-1614709','04-30-22','Shipped','Amazon','Amazon.in','SET347','Set','XS','B09RKFBMYD','Shipped','1','INR','852','Greater Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-2974257-4781134','04-30-22','Shipped','Amazon','Amazon.in','SET264','Set','M','B08YN44FZJ','Shipped','1','INR','824','Thane','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4137548-0481151','04-30-22','Cancelled','Amazon','Amazon.in','JNE3373','Kurta','XXL','B082W8RWN1','Cancelled','0','INR','0','Dahod','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-4461562-9113959','04-30-22','Shipped','Amazon','Amazon.in','SET333','Set','XXL','B09RKDZ461','Shipped','1','INR','909','Ranchi','JHARKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-4535078-5241919','04-30-22','Shipped','Amazon','Amazon.in','JNE3645','Top','L','B08ZHNGS54','Shipped','1','INR','432','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-8387725-2971512','04-30-22','Shipped','Amazon','Amazon.in','SET233','Set','L','B08MXF6MZF','Shipped','1','INR','545','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-6480932-8759528','04-30-22','Shipped','Amazon','Amazon.in','J0381','Set','3XL','B09M6VGNX8','Shipped','1','INR','1146','Vijapura','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9966506-3155561','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3068','Kurta','XL','B07H7F97S4','Shipped','1','INR','696','Chennai','TAMIL NADU','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-7029737-8028367','04-30-22','Shipped','Amazon','Amazon.in','JNE3718','Kurta','M','B099FB63Q6','Shipped','1','INR','432','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-2189901-7515567','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET386','Set','S','B09K3YFPSS','Shipped','1','INR','631','Bangalore','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-2105657-2899562','04-30-22','Shipped','Amazon','Amazon.in','JNE3745','Kurta','XXL','B09K3WDYB6','Shipped','1','INR','316','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-1326801-8886709','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3467','Kurta','XL','B08CDQKS84','Shipped','1','INR','362','Berhampur','ODISHA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-7760667-5809130','04-30-22','Shipped','Amazon','Amazon.in','JNE3721','Kurta','L','B099FBM4FZ','Shipped','1','INR','329','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-8457623-9269955','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XXL','B081WSL2JS','Shipped','1','INR','399','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6820155-3521913','04-30-22','Shipped','Amazon','Amazon.in','SET295','Set','3XL','B09PN3GVMZ','Shipped','1','INR','751','Tezpur','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-6190683-2687538','04-30-22','Shipped','Amazon','Amazon.in','JNE3861','Western Dress','XL','B09SDZ14KR','Shipped','1','INR','791','Himmatnagar','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-4069830-3819562','04-30-22','Shipped','Amazon','Amazon.in','SET288','Set','3XL','B09M6STTBC','Shipped','1','INR','684','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-4069830-3819562','04-30-22','Shipped','Amazon','Amazon.in','SET394','Set','3XL','B09TH6R8K4','Shipped','1','INR','1281','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-4069830-3819562','04-30-22','Shipped','Amazon','Amazon.in','SET397','Set','3XL','B09RKDPH6J','Shipped','1','INR','1186','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-7367545-7081126','04-30-22','Shipped','Amazon','Amazon.in','MEN5002','Kurta','XXL','B08YZ1HZ7B','Shipped','1','INR','499','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6522553-9345930','04-30-22','Cancelled','Merchant','Amazon.in','SET377','Set','M','B09TZV23QS','Unknown','0','INR','1105.36','Dehradun','UTTARAKHAND','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-9950518-0349133','04-30-22','Cancelled','Amazon','Amazon.in','JNE3510','Kurta','M','B08WPR5MCB','Cancelled','0','INR','0','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-6599093-6553153','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','BTM038','Bottom','3XL','B08KR9JYNQ','Shipped','1','INR','377','Kolkata','WEST BENGAL','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-3763475-2237125','04-30-22','Shipped','Amazon','Amazon.in','J0343','Western Dress','M','B0982ZJ666','Shipped','1','INR','744','Dharmapuri','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-1492294-0323520','04-30-22','Shipped','Amazon','Amazon.in','J0341','Western Dress','XL','B099NQJZPQ','Shipped','1','INR','744','Dehradun','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-1162895-2484367','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0295','Western Dress','XXL','B099NSGTJ9','Shipped','1','INR','859','Jaipur','RAJASTHAN','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-6833843-5473114','04-30-22','Shipped','Amazon','Amazon.in','JNE3560','Kurta','M','B08PCVMF6R','Shipped','1','INR','487','Vadodara','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-1477057-8253913','04-30-22','Shipped','Amazon','Amazon.in','J0333','Western Dress','3XL','B0983121HP','Shipped','1','INR','825','Chavakkad','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-2114413-6089906','04-30-22','Shipped','Amazon','Amazon.in','SET389','Set','M','B09KXTTVB5','Shipped','1','INR','680','Patna','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-1879750-2639521','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3801','Kurta','3XL','B09SDYSR1F','Shipped','1','INR','725','Chennai','TAMIL NADU','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-5727754-5302723','04-30-22','Shipped','Amazon','Amazon.in','SET098','Set','M','B07X3K4L82','Shipped','1','INR','696','Vadodara','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0901744-8270705','04-30-22','Shipped','Amazon','Amazon.in','MEN5013','Kurta','L','B08YYR9G96','Shipped','1','INR','499','Vadodara','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9112089-3379536','04-30-22','Cancelled','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Cancelled','0','INR','0','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6357132-2310703','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','L','B0894Y4PNG','Shipped','1','INR','696','Jammu','JAMMU & KASHMIR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-5334922-9670748','04-30-22','Shipped','Amazon','Amazon.in','JNE3718','Kurta','3XL','B099NJ1WVX','Shipped','1','INR','406','Bangalore','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8519791-3706738','04-30-22','Shipped','Amazon','Amazon.in','SET347','Set','S','B09RKDJ9SQ','Shipped','1','INR','852','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-1830318-0357940','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XXL','B081WSL2JS','Shipped','1','INR','399','Narnaund','HARYANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-5103760-7326749','04-30-22','Shipped','Amazon','Amazon.in','JNE3391','Kurta','XXL','B081WYHTF2','Shipped','1','INR','432','Ahmedabad','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-7841951-1872363','04-30-22','Cancelled','Amazon','Amazon.in','SET347','Set','S','B09RKDJ9SQ','Cancelled','0','INR','0','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7698765-2294756','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET277','Set','XXL','B0983FZLXC','Shipped','1','INR','1338','Ambarnath','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-1856281-9996319','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0293','Western Dress','S','B099NQ1SKZ','Shipped','1','INR','472','Gwalior','MADHYA PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-5406738-7113145','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','L','B08XQ8MCKP','Shipped','1','INR','788','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-5257740-5301158','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET154','Set','XL','B082PXMCZ4','Shipped','1','INR','832','Rohtak','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-5257740-5301158','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3439','Kurta','XL','B081X4KQ14','Shipped','1','INR','399','Rohtak','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-2072502-4089911','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','XL','B099NJV9X7','Shipped','1','INR','599','Rohtak','HARYANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0882561-5952340','04-30-22','Shipped','Amazon','Amazon.in','SET293','Set','M','B09K3LJWBB','Shipped','1','INR','692','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-7266170-1163500','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3648','Top','M','B08ZH9GDTY','Shipped','1','INR','518','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-8114272-1687512','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','L','B08XQ8MCKP','Shipped','1','INR','788','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6138639-1478731','04-30-22','Shipped','Amazon','Amazon.in','JNE3334','Kurta','M','B07S8WG31H','Shipped','1','INR','318','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-4059216-4541150','04-30-22','Shipped','Amazon','Amazon.in','SET331','Set','XS','B09NQ54RRT','Shipped','1','INR','597','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-1152015-7333945','04-30-22','Shipped','Amazon','Amazon.in','SET265','Set','S','B0983D6TGS','Shipped','1','INR','888','Patna','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-0177436-6731556','04-30-22','Shipped','Amazon','Amazon.in','JNE3718','Kurta','S','B099FC7FSQ','Shipped','1','INR','406','Ramagundam','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-0715107-8168308','04-30-22','Shipped','Amazon','Amazon.in','SET397','Set','M','B09RKD6KWL','Shipped','1','INR','1186','Pithoragarh','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-0104882-7373900','04-30-22','Cancelled','Amazon','Amazon.in','JNE3861','Western Dress','XXL','B09SDY9GXB','Unshipped','1','INR','791','Himmatnagar','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-0104882-7373900','04-30-22','Cancelled','Amazon','Amazon.in','J0335','Western Dress','XL','B09831P2JC','Unshipped','1','INR','807','Himmatnagar','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-0104882-7373900','04-30-22','Cancelled','Amazon','Amazon.in','J0335','Western Dress','XXL','B0982ZS9FG','Unshipped','1','INR','807','Himmatnagar','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-3002282-6797102','04-30-22','Shipped','Amazon','Amazon.in','JNE1525','Kurta','S','B0743FRDLK','Shipped','1','INR','311','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-8466904-3461908','04-30-22','Shipped','Amazon','Amazon.in','JNE3654','Top','XL','B09873BFC1','Shipped','1','INR','387','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3305587-5364338','04-30-22','Shipped','Amazon','Amazon.in','JNE3261','Kurta','S','B07R41PW8D','Shipped','1','INR','348','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8961316-8137943','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET324','Set','S','B09NQ4CZ65','Shipped','1','INR','597','Guwahati, Kamrup (M)','ASSAM','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-8961316-8137943','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET332','Set','S','B09NQ33VW2','Shipped','1','INR','549','Guwahati, Kamrup (M)','ASSAM','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-2813040-8296320','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','3XL','B09NQ51MPV','Shipped','1','INR','635','Kolar','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-9845791-1393151','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','XS','B09NQ4DD29','Shipped','1','INR','597','Patiala','PUNJAB','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-4277204-2348328','04-30-22','Shipped','Amazon','Amazon.in','SET280','Set','S','B09CT26LGZ','Shipped','1','INR','790','Rewa','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3049339-2085136','04-30-22','Shipped','Amazon','Amazon.in','JNE3618','Kurta','XXL','B091Q9J9QL','Shipped','1','INR','375','Bongaigaon','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9928526-2470747','04-30-22','Shipped','Amazon','Amazon.in','SET304','Set','XS','B09K3LRR2T','Shipped','1','INR','1115','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-4908072-0260360','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','MEN5032','Kurta','3XL','B08YZ2ZXT7','Shipped','1','INR','579','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-3984186-5973150','04-30-22','Shipped','Amazon','Amazon.in','SET110','Set','XXL','B0822V61TT','Shipped','1','INR','788','Chengalpattu','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-8635309-7508346','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','M','B09NQ4NM75','Shipped','1','INR','597','Perambalur','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-0293372-4913973','04-30-22','Cancelled','Amazon','Amazon.in','SET269','Set','3XL','B0983FSRFS','Cancelled','0','INR','0','Kolar','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8288606-4313118','04-30-22','Shipped','Amazon','Amazon.in','JNE3794','Kurta','M','B09HMVWDN3','Shipped','1','INR','517','Bilaspur','HIMACHAL PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8746990-6412346','04-30-22','Shipped','Amazon','Amazon.in','JNE3291','Kurta','XXL','B07R41RZV7','Shipped','1','INR','442','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-0294212-5431551','04-30-22','Shipped','Amazon','Amazon.in','JNE3440','Kurta','3XL','B09HMTKV2L','Shipped','1','INR','399','Varanasi','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-1530134-2105912','04-30-22','Shipped','Amazon','Amazon.in','JNE2270','Kurta','XXL','B07H7DZXJ5','Shipped','1','INR','518','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-5222550-4437140','04-30-22','Shipped','Amazon','Amazon.in','JNE3261','Kurta','M','B07R5X3499','Shipped','1','INR','348','Coimbatore','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-1482435-5202714','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET110','Set','M','B0822TDMYH','Shipped','1','INR','788','Chirmiri','CHHATTISGARH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-6442534-2769112','04-30-22','Cancelled','Amazon','Amazon.in','J0300','Top','3XL','B099S7RDLZ','Cancelled','0','INR','0','Azamgarh','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3113070-0750756','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','M','B09NQ4NM75','Shipped','1','INR','597','Kalyan','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-7796841-1880317','04-30-22','Shipped','Amazon','Amazon.in','JNE3810','Kurta','S','B09RKBYVXN','Shipped','1','INR','696','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-2142542-0941949','04-30-22','Shipped','Amazon','Amazon.in','JNE3461','Kurta','XL','B08B3YPXKZ','Shipped','1','INR','363','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0286717-7761132','04-30-22','Shipped','Amazon','Amazon.in','JNE3429','Kurta','XL','B0893DJ4TN','Shipped','1','INR','299','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-9021273-9221106','04-30-22','Shipped','Amazon','Amazon.in','JNE3710','Western Dress','S','B091SV9XW1','Shipped','1','INR','690','Guwahati','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-5381335-4577925','04-30-22','Shipped','Amazon','Amazon.in','J0113','Top','XS','B08TZNX8NY','Shipped','1','INR','574','Mysore','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-0131752-2560336','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET355','Set','M','B09RKDPHFP','Shipped','1','INR','1399','Barabanki','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-4235449-1353916','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0009','Set','S','B0894X8979','Shipped','1','INR','999','Amila','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-8061614-5688327','04-30-22','Shipped','Amazon','Amazon.in','J0248','Set','XL','B09RKFS78Y','Shipped','1','INR','999','Vijayawada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-8248783-4261958','04-30-22','Shipped','Amazon','Amazon.in','JNE3560','Kurta','XL','B08PCSJ2M6','Shipped','1','INR','487','Rawan Ambuja Cement Plant','CHHATTISGARH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6513062-3876305','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3373','Kurta','3XL','B082W7MZVQ','Shipped','1','INR','376','Tiruchirappalli','TAMIL NADU','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-7779874-9136347','04-30-22','Shipped','Amazon','Amazon.in','SET398','Set','L','B09RP8WLNY','Shipped','1','INR','1115','Herbertpur','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-9638549-1733961','04-30-22','Shipped','Amazon','Amazon.in','NW032','Set','XXL','B0922SFWK1','Shipped','1','INR','517','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-8801185-0134713','04-30-22','Shipped','Amazon','Amazon.in','SET361','Set','S','B09QJ4J6KJ','Shipped','1','INR','1126','Bangalore','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3625443-6505905','04-30-22','Shipped','Amazon','Amazon.in','JNE3797','Western Dress','L','B09SDXFFQ1','Shipped','1','INR','725','Kalamassery','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8078642-8565124','04-30-22','Cancelled','Amazon','Amazon.in','JNE3887','Kurta','XL','B09TZVXQ1J','Cancelled','0','INR','0','Puri-2','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2820441-9623566','04-30-22','Shipped','Amazon','Amazon.in','JNE3870','Western Dress','XXL','B09RK61TZX','Shipped','1','INR','721','Tikabali','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4312987-5366767','04-30-22','Shipped','Amazon','Amazon.in','SET345','Set','XS','B09KXSVTDB','Shipped','1','INR','666','Biharsharif','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-5189998-9343503','04-30-22','Shipped','Amazon','Amazon.in','NW013','Set','L','B0928XJX1F','Shipped','1','INR','496','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-9863928-5979501','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE2014','Kurta','XL','B077MM3LFJ','Shipped','1','INR','353','Paravur','KERALA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-4644162-9093116','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3612','Kurta','S','B091Q7G4PC','Shipped','1','INR','399','Basti','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-0974406-3179521','04-30-22','Shipped','Amazon','Amazon.in','PJNE2100','Kurta','6XL','B09LD3PMBT','Shipped','1','INR','458','Walajapet','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-0048138-1845122','04-30-22','Shipped','Amazon','Amazon.in','SET398','Set','3XL','B09RPJD74Z','Shipped','1','INR','1115','Dimapur','NAGALAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-6283946-7749133','04-30-22','Shipped','Amazon','Amazon.in','J0006','Ethnic Dress','M','B0894WV6S6','Shipped','1','INR','845','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-0542879-1795554','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','S','B081WX4G4Q','Shipped','1','INR','399','Mahendragarh','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-0218328-1773963','04-30-22','Cancelled','Amazon','Amazon.in','PJNE2100','Kurta','6XL','B09LD3PMBT','Cancelled','0','INR','0','Walajapet','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3742007-3242711','04-30-22','Shipped','Amazon','Amazon.in','JNE3437','Kurta','S','B085HGB1GT','Shipped','1','INR','517','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3742007-3242711','04-30-22','Shipped','Amazon','Amazon.in','JNE3465','Kurta','S','B08BF4GQ9V','Shipped','1','INR','517','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-3067317-3360344','04-30-22','Shipped','Amazon','Amazon.in','J0373','Kurta','3XL','B09KXQ3NHZ','Shipped','1','INR','599','Greater Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-5648244-8317954','04-30-22','Shipped','Amazon','Amazon.in','J0344','Top','3XL','B098731927','Shipped','1','INR','487','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3460653-0171519','04-30-22','Shipped','Amazon','Amazon.in','J0118','Top','XXL','B08N4QTQHW','Shipped','1','INR','487','Gurugram','HARYANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-5337874-2284337','04-30-22','Shipped','Amazon','Amazon.in','SET200','Set','XS','B08L92SN2W','Shipped','1','INR','568','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-2660443-4165145','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','M','B081WVMMCY','Shipped','1','INR','399','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-3329522-2367566','04-30-22','Shipped','Amazon','Amazon.in','JNE1998','Kurta','XXL','B078NTPQHT','Shipped','1','INR','295','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-3078054-1755513','04-30-22','Shipped','Amazon','Amazon.in','MEN5004','Kurta','3XL','B08YZ2W99X','Shipped','1','INR','484','Bijnor','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4647176-6456305','04-30-22','Shipped','Amazon','Amazon.in','SET345','Set','XXL','B09KXSQ73F','Shipped','1','INR','626','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5011528-8276347','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','M','B099NK55YG','Shipped','1','INR','563','Allahabad','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4097885-3129958','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3654','Top','L','B09B3GS5CM','Shipped','1','INR','387','Vasai Virar','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-1224053-5752314','04-30-22','Cancelled','Merchant','Amazon.in','J0344','Top','L','B0986XYFFP','Unknown','0','INR','463.81','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-2849582-6531553','04-30-22','Shipped','Amazon','Amazon.in','J0334','Top','L','B0986XXHX7','Shipped','1','INR','512','Bijnor','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5875767-6399551','04-30-22','Shipped','Amazon','Amazon.in','J0230','Set','S','B08XNJ19QH','Shipped','1','INR','1112','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6336729-6763536','04-30-22','Cancelled','Amazon','Amazon.in','SET345','Set','M','B09KXV4BN8','Unshipped','1','INR','626','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-3907920-5281963','04-30-22','Shipped','Amazon','Amazon.in','JNE1233','Kurta','XXL','B071VG5FH4','Shipped','1','INR','376','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7310428-6047538','04-30-22','Shipped','Amazon','Amazon.in','J0295','Western Dress','M','B099NP42BF','Shipped','1','INR','859','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-2608092-6065935','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','L','B09NQ44RNV','Shipped','1','INR','597','Mangaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-9760385-9109154','04-30-22','Shipped','Amazon','Amazon.in','JNE3371','Kurta','XL','B07WV4JV4D','Shipped','1','INR','329','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0732969-3941948','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0147','Set','XL','B091Z8TV5Q','Shipped','1','INR','583','New Town','WEST BENGAL','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-2720308-2560327','04-30-22','Shipped','Amazon','Amazon.in','J0308','Western Dress','L','B099NS9KRN','Shipped','1','INR','665','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-0589123-6183541','04-30-22','Shipped','Amazon','Amazon.in','NW030','Set','L','B09G2T795K','Shipped','1','INR','582','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3874942-9917143','04-30-22','Shipped','Amazon','Amazon.in','SET360','Set','XL','B09QJLG4DF','Shipped','1','INR','1126','Sambhal','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-1706149-0949104','04-30-22','Shipped','Amazon','Amazon.in','PJNE3373','Kurta','6XL','B09LD3TCYP','Shipped','1','INR','534','Nagpur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-1672316-3245939','04-30-22','Shipped','Amazon','Amazon.in','JNE3449','Kurta','XXL','B08BF9DZ3F','Shipped','1','INR','319','Elavanasurkottai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-1832646-7988329','04-30-22','Shipped','Amazon','Amazon.in','JNE3786','Kurta','S','B09M72VK88','Shipped','1','INR','368','Sangli Miraj Kupwad','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-9692204-9817146','04-30-22','Cancelled','Amazon','Amazon.in','SET324','Set','M','B09NQ4NM75','Unshipped','1','INR','597','Kalyan','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-9339129-6219537','04-30-22','Cancelled','Amazon','Amazon.in','J0003','Set','XXL','B0894XKVH3','Unshipped','1','INR','654','Mysuru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-3036350-8089120','04-30-22','Shipped','Amazon','Amazon.in','J0314','Kurta','M','B08PV1NB1B','Shipped','1','INR','795','Ankleshwr','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6680046-0839536','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0341','Western Dress','M','B099NQQ79L','Shipped','1','INR','744','Chennai','TAMIL NADU','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-2966654-4672325','04-30-22','Shipped','Amazon','Amazon.in','PJNE3068','Kurta','4XL','B09M75YGQF','Shipped','1','INR','692','Greater Noida West','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4845285-4565113','04-30-22','Shipped','Amazon','Amazon.in','J0340','Top','M','B0986XSXR1','Shipped','1','INR','563','Jammu','JAMMU & KASHMIR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4496851-5319548','04-30-22','Shipped','Amazon','Amazon.in','JNE3687','Top','M','B0986XRZ8X','Shipped','1','INR','545','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3416118-1167564','04-30-22','Shipped','Amazon','Amazon.in','J0376','Set','L','B09QJ4PXZ3','Shipped','1','INR','999','Itanagar','ARUNACHAL PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-1590113-9193914','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','M','B0894XH3LN','Shipped','1','INR','654','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-0363929-8015528','04-30-22','Shipped','Amazon','Amazon.in','J0198','Top','S','B0986XYHCY','Shipped','1','INR','588','Karanja','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-7173744-5333154','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3453','Kurta','S','B085HMWJ4R','Shipped','1','INR','497','New Delhi','DELHI','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-6880044-2861120','04-30-22','Shipped','Amazon','Amazon.in','JNE3795','Kurta','3XL','B09HMXJVFS','Shipped','1','INR','517','Nimbahera','RAJASTHAN','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4337144-0984323','04-30-22','Cancelled','Amazon','Amazon.in','J0340','Top','M','B0986XSXR1','Cancelled','0','INR','0','Jammu','JAMMU & KASHMIR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1851948-5476361','04-30-22','Shipped','Amazon','Amazon.in','SET398','Set','M','B09RPRS8JL','Shipped','1','INR','1115','Imphal East','MANIPUR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-5810429-4493110','04-30-22','Shipped','Amazon','Amazon.in','NW033','Set','3XL','B099NPX9K3','Shipped','1','INR','582','Bidhan Nagar','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1068229-1581965','04-30-22','Shipped','Amazon','Amazon.in','NW037','Set','3XL','B099NQT8H8','Shipped','1','INR','449','Bidhan Nagar','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2105140-3584364','04-30-22','Shipped','Amazon','Amazon.in','JNE3618','Kurta','M','B091Q9Q34N','Shipped','1','INR','375','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-3561336-3563535','04-30-22','Shipped','Amazon','Amazon.in','SET290','Set','M','B09B5922WD','Shipped','1','INR','771','Ahmedabad','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-9532672-5385917','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Tiruchirappalli','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-4547464-4180323','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3568','Kurta','XXL','B08KRYXSYH','Shipped','1','INR','0','Bhubaneswar','ODISHA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-2211107-5096323','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','3XL','B0894Y3VBB','Shipped','1','INR','654','Aligarh','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-9412025-7537140','04-30-22','Shipped','Amazon','Amazon.in','JNE2153','Kurta','S','B0794T8ZLN','Shipped','1','INR','424','Kochi','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-5456917-5571511','04-30-22','Cancelled','Amazon','Amazon.in','JNE3861','Western Dress','XL','B09SDZ14KR','Cancelled','0','INR','0','Ghaziabad','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-8452330-4756317','04-30-22','Shipped','Amazon','Amazon.in','JNE3645','Top','XS','B08ZJ2CB3B','Shipped','1','INR','432','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4350114-4299568','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3662','Top','XS','B0986ZVL6Y','Shipped','1','INR','399','Pune','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-8692900-3888310','04-30-22','Shipped','Amazon','Amazon.in','JNE3440','Kurta','L','B081X7JHBC','Shipped','1','INR','399','Bangalore','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-6750101-3923558','04-30-22','Shipped','Amazon','Amazon.in','SET331','Set','S','B09NQ47F17','Shipped','1','INR','597','Malappuram','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-5725327-6264327','04-30-22','Shipped','Amazon','Amazon.in','J0301','Top','M','B099S9DTR2','Shipped','1','INR','463','Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-5209693-1173944','04-30-22','Shipped','Amazon','Amazon.in','MEN5004','Kurta','XL','B08YZ19332','Shipped','1','INR','484','Greater Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-8255889-7526765','04-30-22','Shipped','Amazon','Amazon.in','J0352','Kurta','S','B098119Y7R','Shipped','1','INR','635','Patna','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3554912-7244363','04-30-22','Shipped','Amazon','Amazon.in','JNE3160','Kurta','XXL','B07K44CD3P','Shipped','1','INR','685','Sibsagar','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4737202-9096304','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3798','Western Dress','M','B09SDXTRS9','Shipped','1','INR','725','Gaya','BIHAR','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-2842936-5423534','04-30-22','Shipped','Amazon','Amazon.in','JNE3690','Top','XL','B094FKN153','Shipped','1','INR','487','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4936046-5852304','04-30-22','Cancelled','Merchant','Amazon.in','SET355','Set','XXL','B09RKD8HQJ','Unknown','0','INR','1249.11','Gurugram','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-4936046-5852304','04-30-22','Cancelled','Merchant','Amazon.in','SET317','Set','XXL','B09RKD5B2W','Unknown','0','INR','1058.93','Gurugram','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-9580874-3525948','04-30-22','Shipped','Amazon','Amazon.in','SET375','Set','XL','B09RKFLLF1','Shipped','1','INR','696','Kollam','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-7426070-1355530','04-30-22','Shipped','Amazon','Amazon.in','JNE3371','Kurta','M','B07WP5HRMB','Shipped','1','INR','329','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-4878137-1126707','04-30-22','Shipped','Amazon','Amazon.in','JNE3465','Kurta','S','B08BF4GQ9V','Shipped','1','INR','517','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3505516-3505949','04-30-22','Shipped','Amazon','Amazon.in','SET116','Set','XL','B082Z3MRPB','Shipped','1','INR','591','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6199849-7523514','04-30-22','Shipped','Amazon','Amazon.in','JNE3781','Kurta','3XL','B09K3WFS32','Shipped','1','INR','406','Peralasseri','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6180074-2350757','04-30-22','Shipped','Amazon','Amazon.in','SET147','Set','XL','B089B1J57W','Shipped','1','INR','684','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6180074-2350757','04-30-22','Shipped','Amazon','Amazon.in','SET397','Set','XL','B09RKDB8SB','Shipped','1','INR','1115','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-2403215-8361103','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET300','Set','L','B09KXTBZ3N','Shipped','1','INR','999','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-6578109-5618751','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3384','Kurta','M','B084KYYXR3','Shipped','1','INR','295','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-2307966-4961113','04-30-22','Shipped','Amazon','Amazon.in','JNE3291','Kurta','XL','B07R4XJNW3','Shipped','1','INR','442','Udupi','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-5539778-0029904','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','L','B099NJKJ54','Shipped','1','INR','563','Mariani','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6222676-0740318','04-30-22','Shipped','Amazon','Amazon.in','JNE3399','Kurta','L','B082W8354V','Shipped','1','INR','435','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-2166075-2254703','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','M','B099NK55YG','Shipped','1','INR','563','Mangaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5766340-7411567','04-30-22','Shipped','Amazon','Amazon.in','JNE3440','Kurta','XS','B09HMY3YLT','Shipped','1','INR','399','Ahmedabad','Gujarat','IN','TRUE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-0634392-1837110','04-30-22','Cancelled','Amazon','Amazon.in','J0198','Top','S','B0986XYHCY','Cancelled','0','INR','0','Karanja','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-2759943-9849959','04-30-22','Shipped','Amazon','Amazon.in','SET363','Set','XXL','B09TH61GMF','Shipped','1','INR','1338','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-5977671-8855508','04-30-22','Shipped - Returned to Seller','Merchant','Amazon.in','SET304','Set','XS','B09K3LRR2T','Shipped','1','INR','1115','Cooch Behar','WEST BENGAL','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-9321153-0591557','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XL','B081WT6GG7','Shipped','1','INR','399','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-0696150-3898703','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0348','Set','S','B09HNSNWRH','Shipped','1','INR','499','Pune','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-7586136-6520337','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0399','Western Dress','M','B09SDYL6L2','Shipped','1','INR','791','Dehradun','UTTARAKHAND','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-6146457-8788352','04-30-22','Shipped','Amazon','Amazon.in','JNE3797','Western Dress','M','B09SDY8DCT','Shipped','1','INR','725','Gaya','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-8514200-3544346','04-30-22','Cancelled','Amazon','Amazon.in','JNE3440','Kurta','M','B081WY1SP3','Cancelled','0','INR','0','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-7452877-2137949','04-30-22','Cancelled','Merchant','Amazon.in','JNE3802','Kurta','M','B09K3W2LHF','Unknown','0','INR','0','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-2703790-2816329','04-30-22','Cancelled','Merchant','Amazon.in','J0285','Set','M','B08QGNW2H8','Unknown','0','INR','1278.57','Jharia Khas','JHARKHAND','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-1515930-8661921','04-30-22','Shipped','Amazon','Amazon.in','SET322','Set','XL','B09RKHL9H2','Shipped','1','INR','1099','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9144614-1601126','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','MEN5021','Kurta','XL','B08YYVLZVH','Shipped','1','INR','533','Secunderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-0994909-4122733','04-30-22','Shipped','Amazon','Amazon.in','PJ0096','Kurta','5XL','B09LD3ZZ2N','Shipped','1','INR','696','Udaipur','RAJASTHAN','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-7042386-5486768','04-30-22','Shipped','Amazon','Amazon.in','JNE3461','Kurta','M','B08B3VSTFG','Shipped','1','INR','363','Coimbatore','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-7652993-1507525','04-30-22','Shipped','Amazon','Amazon.in','SET383','Set','L','B09K3PDMBM','Shipped','1','INR','631','Bhubaneswar','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3847456-6656309','04-30-22','Shipped','Amazon','Amazon.in','J0002','Set','3XL','B0894YJC25','Shipped','1','INR','1115','Bhagalpur','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3847456-6656309','04-30-22','Shipped','Amazon','Amazon.in','SET344','Set','3XL','B09QJ3WT3H','Shipped','1','INR','968','Bhagalpur','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-7623384-8040337','04-30-22','Shipped','Amazon','Amazon.in','JNE3465','Kurta','XXL','B08BFT4ZKX','Shipped','1','INR','486','Nagpur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-7623384-8040337','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','XXL','B09NQ3MPRM','Shipped','1','INR','597','Nagpur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4607096-6413920','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET184','Set','3XL','B08W98B8ZN','Shipped','1','INR','563','Nagpur','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-6783988-2006729','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','L','B09NQ44RNV','Shipped','1','INR','597','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6975277-1927553','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3697','Kurta','XXL','B098133PV5','Shipped','1','INR','458','Berhampore','WEST BENGAL','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-5586272-3646748','04-30-22','Shipped','Amazon','Amazon.in','J0008','Set','S','B0894XGJ83','Shipped','1','INR','1065','Dehradun','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6655820-6440356','04-30-22','Shipped','Amazon','Amazon.in','J0008','Set','XXL','B0894WT71H','Shipped','2','INR','2130','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1584788-8864335','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0013','Set','XXL','B08CMRGFFJ','Shipped','1','INR','1099','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-0150402-0900371','04-30-22','Shipped','Amazon','Amazon.in','J0208','Western Dress','S','B0967PHLMJ','Shipped','1','INR','721','Seoni','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6791822-5493964','04-30-22','Shipped','Amazon','Amazon.in','SET344','Set','XL','B09QJ57BL6','Shipped','1','INR','968','Agra','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0483874-0889137','04-30-22','Shipped','Amazon','Amazon.in','NW001','Set','XXL','B0922V99HN','Shipped','1','INR','563','Lucknow','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5600921-2143569','04-30-22','Cancelled','Merchant','Amazon.in','SET304','Set','S','B09K3JVNR1','Unknown','0','INR','995.54','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-1607808-0769930','04-30-22','Cancelled','Amazon','Amazon.in','SET265','Set','XL','B0983DQLBQ','Cancelled','0','INR','0','Patna','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5124083-2725136','04-30-22','Shipped','Amazon','Amazon.in','SET004','Set','S','B07K5BDG1D','Shipped','1','INR','682','Ghaziabad','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4766116-5412325','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XL','B081WT6GG7','Shipped','1','INR','399','Nermand','HIMACHAL PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-6885004-6990731','04-30-22','Shipped','Amazon','Amazon.in','SET345','Set','M','B09KXV4BN8','Shipped','1','INR','626','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2207276-9869933','04-30-22','Shipped','Amazon','Amazon.in','J0012','Set','M','B0894XYMWS','Shipped','1','INR','1140','Kamareddy','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-9494293-9423561','04-30-22','Shipped','Amazon','Amazon.in','JNE3465','Kurta','M','B08BFV1DVW','Shipped','1','INR','486','Srinagar','JAMMU & KASHMIR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6867266-8495534','04-30-22','Shipped','Amazon','Amazon.in','SET374','Set','XS','B09NDKGZ6V','Shipped','1','INR','597','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3475592-6193128','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','XL','B08KRTXC2Y','Shipped','1','INR','399','Muddebihal','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1987024-2709164','04-30-22','Shipped','Amazon','Amazon.in','J0041','Set','M','B089G2L483','Shipped','1','INR','660','Santhamaguluru Mandal','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-1522425-5387565','04-30-22','Shipped','Amazon','Amazon.in','JNE3611','Kurta','XL','B08XVPKBKG','Shipped','1','INR','459','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3270734-5045130','04-30-22','Shipped','Amazon','Amazon.in','SET384','Set','XS','B09K3DFHT2','Shipped','1','INR','631','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-4101226-7217932','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3802','Kurta','M','B09K3W2LHF','Shipped','1','INR','459','Lucknow','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-5719664-5449151','04-30-22','Cancelled','Amazon','Amazon.in','SET374','Set','XS','B09NDKGZ6V','Unshipped','1','INR','597','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-9400764-4029123','04-30-22','Shipped','Amazon','Amazon.in','SET347','Set','S','B09RKDJ9SQ','Shipped','1','INR','852','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8413944-2634744','04-30-22','Shipped','Amazon','Amazon.in','JNE2014','Kurta','XL','B077MM3LFJ','Shipped','1','INR','353','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8271099-5133911','04-30-22','Shipped','Amazon','Amazon.in','JNE3635','Kurta','L','B08XVYN7G6','Shipped','1','INR','345','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8271099-5133911','04-30-22','Shipped','Amazon','Amazon.in','JNE3721','Kurta','L','B099FBM4FZ','Shipped','1','INR','329','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-3441326-1516368','04-30-22','Shipped','Amazon','Amazon.in','J0118','Top','3XL','B08N43MK22','Shipped','1','INR','518','Kolkata 700034','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-8009772-6580317','04-30-22','Shipped','Amazon','Amazon.in','JNE3654','Top','XS','B0986ZFY2S','Shipped','1','INR','387','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-4774686-7773937','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3652','Top','XL','B08ZHXGSW3','Shipped','1','INR','339','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-2860689-5652319','04-30-22','Shipped','Amazon','Amazon.in','J0339','Western Dress','L','B098315N2Z','Shipped','1','INR','744','Seoni','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6386989-1689108','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET303','Set','XL','B09K3F7D9H','Shipped','1','INR','888','Baruipur','WEST BENGAL','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-9720884-9553122','04-30-22','Shipped','Amazon','Amazon.in','JNE3396','Kurta','3XL','B083ZZ8869','Shipped','1','INR','487','Kendrapara','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6428766-2839536','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3256','Kurta','3XL','B07RSWN1C4','Shipped','1','INR','487','Kendrapara','ODISHA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-8641795-6914711','04-30-22','Shipped','Amazon','Amazon.in','J0340','Top','XS','B0987184SL','Shipped','1','INR','563','Gurugram','HARYANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-9475978-1434754','04-30-22','Shipped','Amazon','Amazon.in','J0335','Western Dress','S','B09831NCG7','Shipped','1','INR','859','Vijayawada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5776821-9327552','04-30-22','Shipped','Amazon','Amazon.in','J0008','Set','L','B0894YB3B1','Shipped','1','INR','1133','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6845071-0336346','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','XS','B08XQBXFPP','Shipped','1','INR','788','Nashik','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-7491342-1035558','04-30-22','Shipped','Amazon','Amazon.in','J0280','Set','S','B08QGM7FCC','Shipped','1','INR','1463','Thane','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6783343-9758701','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Hoshiarpur','PUNJAB','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-0043314-1059527','04-30-22','Cancelled','Amazon','Amazon.in','J0339','Western Dress','M','B09831YHGV','Unshipped','1','INR','744','Seoni','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6586654-6641140','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3564','Kurta','3XL','B09B2FNCBT','Shipped','1','INR','487','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-6120626-0941135','04-30-22','Shipped','Amazon','Amazon.in','SET182','Set','L','B085HRLT87','Shipped','1','INR','657','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-9255314-3102740','04-30-22','Shipped','Amazon','Amazon.in','SET128','Set','M','B07WZFT117','Shipped','1','INR','1133','Barshi','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3436456-9893130','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','XXL','B08KRYCC8J','Shipped','1','INR','399','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3870331-6287517','04-30-22','Shipped','Amazon','Amazon.in','JNE3568','Kurta','L','B08KS2BPL8','Shipped','1','INR','399','Dehradun','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3870331-6287517','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Dehradun','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-2882576-2777135','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0011','Set','M','B08B3YNJG5','Shipped','1','INR','1233','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-2256919-4846738','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3881','Western Dress','3XL','B09VC3ST6H','Shipped','1','INR','825','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-2920089-2403567','04-30-22','Shipped','Amazon','Amazon.in','JNE3639','Top','XXL','B08ZH7RVGJ','Shipped','1','INR','487','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-7792526-4685142','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','XXL','B099NJQ8JQ','Shipped','1','INR','563','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-7680255-6117120','04-30-22','Shipped','Amazon','Amazon.in','JNE3613','Kurta','XXL','B08XWBRM8L','Shipped','1','INR','399','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-4646784-8411501','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3368','Kurta','3XL','B0828PD16L','Shipped','1','INR','471','Chandi Mandir','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-2788163-4515521','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3522','Kurta','XXL','B08W9K3MXR','Shipped','1','INR','342','Ujjain','MADHYA PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-1757140-2025918','04-30-22','Shipped','Amazon','Amazon.in','JNE3741','Kurta','XXL','B099FBTWW1','Shipped','1','INR','432','Ujjain','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-9105351-8453114','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Haldwani','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-0503400-6235514','04-30-22','Shipped','Amazon','Amazon.in','SET293','Set','S','B09K3G4TS6','Shipped','1','INR','736','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3201739-2676310','04-30-22','Shipped','Amazon','Amazon.in','SET388','Set','L','B09QJLFDRK','Shipped','1','INR','1260','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-8027093-8553945','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Uttarkashi','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-3331597-7637100','04-30-22','Shipped','Amazon','Amazon.in','J0008','Set','XS','B0894WWGK9','Shipped','1','INR','1133','Bhubaneswar','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4424319-6635501','04-30-22','Shipped','Amazon','Amazon.in','SET197','Set','L','B08B3YPD63','Shipped','1','INR','759','Old Goa','Goa','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-0906375-2269150','04-30-22','Cancelled','Amazon','Amazon.in','MEN5029','Kurta','M','B08YZ1SZDH','Unshipped','1','INR','475','Maheshwar','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-7261451-5682727','04-30-22','Shipped','Amazon','Amazon.in','J0341','Western Dress','XS','B099NS55L1','Shipped','1','INR','744','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5096970-7475550','04-30-22','Cancelled','Merchant','Amazon.in','J0010','Set','L','B08BJSDK5J','Unknown','0','INR','1902.86','Hardoi','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-6566640-5417947','04-30-22','Shipped','Amazon','Amazon.in','JNE3800','Western Dress','M','B09SDXQ3X9','Shipped','1','INR','771','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-5302912-6805151','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3798','Western Dress','M','B09SDXTRS9','Shipped','1','INR','725','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-9707366-3029944','04-30-22','Cancelled','Merchant','Amazon.in','JNE3453','Kurta','S','B085HMWJ4R','Unknown','0','INR','473.33','New Delhi','DELHI','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-1365379-0131533','04-30-22','Cancelled','Amazon','Amazon.in','J0012','Set','M','B0894XYMWS','Cancelled','0','INR','0','Kamareddy','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5540360-9479519','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET183','Set','M','B08B3Z2YY3','Shipped','1','INR','759','Shillong','MEGHALAYA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-2079921-1244300','04-30-22','Cancelled','Amazon','Amazon.in','MEN5029','Kurta','M','B08YZ1SZDH','Unshipped','1','INR','475','Dhamnod Dhar District','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8019936-6115500','04-30-22','Cancelled','Amazon','Amazon.in','J0003','Set','XXL','B0894XKVH3','Unshipped','1','INR','654','Mysuru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6711228-7576354','04-30-22','Cancelled','Amazon','Amazon.in','J0341','Western Dress','XXL','B099NR3NXY','Unshipped','1','INR','791','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1425554-3718756','04-30-22','Shipped','Amazon','Amazon.in','J0341','Western Dress','3XL','B099NSQP4Z','Shipped','1','INR','744','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-9906412-0889129','04-30-22','Shipped','Amazon','Amazon.in','JNE3373','Kurta','3XL','B082W7MZVQ','Shipped','1','INR','376','Chakdaha','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-8991303-6559523','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XL','B081WT6GG7','Shipped','1','INR','399','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6046797-8945127','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','XL','B099NJV9X7','Shipped','1','INR','599','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2134173-5385136','04-30-22','Shipped','Amazon','Amazon.in','J0331','Kurta','3XL','B09PD63F81','Shipped','1','INR','782','Chikkamagaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2134173-5385136','04-30-22','Shipped','Amazon','Amazon.in','JNE3752','Kurta','3XL','B09K3Z6TT3','Shipped','1','INR','362','Chikkamagaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2155477-9353103','04-30-22','Shipped','Amazon','Amazon.in','SET369','Set','XXL','B09QJM97Z8','Shipped','1','INR','1173','Bhubaneswar','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-8580022-5578715','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0341','Western Dress','M','B099NQQ79L','Shipped','1','INR','744','Gurugram','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-1572540-8678700','04-30-22','Shipped','Amazon','Amazon.in','JNE3797','Western Dress','M','B09SDY8DCT','Shipped','1','INR','725','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1887627-9813158','04-30-22','Shipped','Amazon','Amazon.in','JNE3373','Kurta','XS','B082W872VQ','Shipped','1','INR','376','Visakhapatnam','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7712483-3825907','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3805','Kurta','L','B09K3ZKHMW','Shipped','1','INR','459','Allahabad','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('402-3621298-2630741','04-30-22','Cancelled','Amazon','Amazon.in','J0003','Set','XXL','B0894XKVH3','Unshipped','1','INR','654','Mysuru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-8745561-3169903','04-30-22','Shipped','Amazon','Amazon.in','JNE3537','Kurta','M','B08JGXZHY9','Shipped','1','INR','379','Lucknow','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-1508602-9433941','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','XL','B0894YFQ5R','Shipped','1','INR','696','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-9371949-6030721','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','M','B09NQ4NM75','Shipped','1','INR','597','Malda','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2705563-6985105','04-30-22','Shipped','Amazon','Amazon.in','SET293','Set','M','B09K3LJWBB','Shipped','1','INR','692','Dimapur','NAGALAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-3537751-4007556','04-30-22','Shipped','Amazon','Amazon.in','SET436','Set','3XL','B09YNY91G5','Shipped','1','INR','1999','Nellore','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5990312-3581165','04-30-22','Shipped','Amazon','Amazon.in','SET264','Set','XXL','B08YNK9K8F','Shipped','1','INR','824','Puducherry','PUDUCHERRY','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-6062596-1220349','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','XS','B08KRXDR4Y','Shipped','1','INR','399','Cuncolim','GOA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-8220241-5105927','04-30-22','Shipped','Amazon','Amazon.in','J0329','Kurta','3XL','B09KXRLH3S','Shipped','1','INR','737','Chikkamagaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-9405529-3743511','04-30-22','Shipped','Amazon','Amazon.in','JNE3568','Kurta','XL','B08KS2BCHS','Shipped','1','INR','399','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-3595365-1666728','04-30-22','Cancelled','Amazon','Amazon.in','SET341','Set','L','B09NPXCZZG','Unshipped','1','INR','899','Noida','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3271219-3762757','04-30-22','Shipped','Amazon','Amazon.in','JNE3543','Kurta','M','B08HHJQ3F4','Shipped','1','INR','368','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-3660716-8589107','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3368','Kurta','3XL','B0828PD16L','Shipped','1','INR','471','Trivandrum','KERALA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-3953233-6135505','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','399','Kanpur','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-5525660-2118707','04-30-22','Shipped','Amazon','Amazon.in','JNE3365','Kurta','S','B07WS14TZY','Shipped','1','INR','376','Chinnalapatti','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-9941718-1734719','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3759','Kurta','XL','B099FB2C9L','Shipped','1','INR','544','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-1297873-2176339','04-30-22','Shipped','Amazon','Amazon.in','MEN5001','Kurta','L','B08YYRNM5M','Shipped','1','INR','499','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-6401192-4057954','04-30-22','Shipped','Amazon','Amazon.in','J0098','Top','XS','B092CZW41L','Shipped','1','INR','426','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-3397500-8084361','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','XL','B08KRTXC2Y','Shipped','1','INR','399','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-9620288-8918704','04-30-22','Cancelled','Amazon','Amazon.in','SET226','Set','L','B08MYTQ4F9','Cancelled','0','INR','0','Bageshwar','UTTARAKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8089760-1132331','04-30-22','Shipped','Amazon','Amazon.in','SET380','Set','3XL','B09QJ3F6T9','Shipped','1','INR','995','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-7042175-3905937','04-30-22','Shipped','Amazon','Amazon.in','MEN5009','Kurta','M','B08YYX8VKT','Shipped','1','INR','499','Barrackpore','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-7042175-3905937','04-30-22','Shipped','Amazon','Amazon.in','MEN5011','Kurta','M','B08YZ1Z5XS','Shipped','1','INR','499','Barrackpore','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4629176-4141949','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','M','B09NQ4NM75','Shipped','1','INR','597','Dombivali  East','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-7306449-0588335','04-30-22','Shipped','Amazon','Amazon.in','MEN5032','Kurta','S','B08YYXJJ4V','Shipped','1','INR','562','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-1396965-6726703','04-30-22','Shipped','Amazon','Amazon.in','PJ0096','Kurta','5XL','B09LD3ZZ2N','Shipped','1','INR','696','Patna','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-0624641-6557144','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','L','B08XQ8MCKP','Shipped','1','INR','788','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-8444009-8723509','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','M','B08KRXV1QR','Shipped','1','INR','399','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-5729580-2175565','04-30-22','Shipped','Amazon','Amazon.in','SET359','Set','XXL','B09RKFC8CP','Shipped','1','INR','1099','New Town','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-2255967-5457950','04-30-22','Shipped','Amazon','Amazon.in','J0199','Set','3XL','B08QGMQRLF','Shipped','1','INR','476','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5020509-5674715','04-30-22','Shipped - Returned to Seller','Merchant','Amazon.in','JNE3798','Western Dress','M','B09SDXTRS9','Shipped','1','INR','0','New Delhi','DELHI','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('407-7642883-3094732','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0401','Western Dress','L','B09SDXN14H','Shipped','1','INR','885','Sibsagar','ASSAM','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-7608918-0571517','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','XS','B0894WW15B','Shipped','1','INR','654','Jammu','JAMMU & KASHMIR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-6589781-2209965','04-30-22','Shipped','Amazon','Amazon.in','J0308','Western Dress','XL','B099NS3FWG','Shipped','1','INR','625','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9442254-2207515','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','PJNE3368','Kurta','6XL','B09PY99SVJ','Shipped','1','INR','505','Pathanapuram','KERALA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-3071731-6600369','04-30-22','Shipped','Amazon','Amazon.in','PJNE3252','Kurta','6XL','B09LD24932','Shipped','1','INR','563','Pathanapuram','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6026001-1717923','04-30-22','Cancelled','Merchant','Amazon.in','JNE3752','Kurta','M','B09K3WC7DN','Unknown','0','INR','344.76','Jaunpur','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-4026534-0431517','04-30-22','Cancelled','Amazon','Amazon.in','SET217','Set','3XL','B089B2WLM2','Cancelled','0','INR','0','Solapur','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-4970885-3273941','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3799','Kurta','XL','B09SDYHWLX','Shipped','1','INR','666','Pune','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-2942566-8263534','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','S','B081WX4G4Q','Shipped','1','INR','399','Mahbubnagar','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-7501816-7391539','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3294','Kurta','S','B07R5W78SS','Shipped','1','INR','432','Nk Sweets Vikasnagar','UTTARAKHAND','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-3137526-3167563','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','L','B081WSCKPQ','Shipped','1','INR','0','Darjeeling','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5211576-2061139','04-30-22','Shipped','Amazon','Amazon.in','SET356','Set','3XL','B09QJ49VXB','Shipped','1','INR','1099','Ranchi','JHARKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-9632792-8869139','04-30-22','Shipped','Amazon','Amazon.in','JNE2014','Kurta','3XL','B07G2CSMX9','Shipped','1','INR','353','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7971979-8745937','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0401','Western Dress','XS','B09SDXYWYN','Shipped','1','INR','0','Ludhiana','PUNJAB','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-5166820-2566738','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','M','B099NK55YG','Shipped','1','INR','563','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-8932002-4271522','04-30-22','Shipped','Amazon','Amazon.in','SET110','Set','XXL','B0822V61TT','Shipped','1','INR','788','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-1855398-2642751','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','M','B0894XH3LN','Shipped','1','INR','654','Muzaffarpur','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-0912805-7526753','04-30-22','Shipped','Amazon','Amazon.in','SET365','Set','L','B09QJM9NDP','Shipped','1','INR','0','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2403704-9667560','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','3XL','B081WZ4T3V','Shipped','1','INR','399','Secunderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-2569549-3466719','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','L','B0894Y4PNG','Shipped','1','INR','696','Sonbhadra','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-2822825-3877133','04-30-22','Shipped','Amazon','Amazon.in','J0230','Set','XXL','B08XNGQCGM','Shipped','1','INR','1112','Lucknow','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-5222377-4501935','04-30-22','Shipped','Amazon','Amazon.in','JNE3465','Kurta','3XL','B08BFVXK6N','Shipped','1','INR','517','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2644368-7969167','04-30-22','Shipped','Amazon','Amazon.in','SET265','Set','M','B0983DBK44','Shipped','1','INR','888','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2644368-7969167','04-30-22','Shipped','Amazon','Amazon.in','J0280','Set','S','B08QGM7FCC','Shipped','1','INR','1463','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2644368-7969167','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','3XL','B081WZ4T3V','Shipped','1','INR','399','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2644368-7969167','04-30-22','Shipped','Amazon','Amazon.in','JNE3288','Kurta','M','B07R4ZNMX6','Shipped','1','INR','442','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2644368-7969167','04-30-22','Shipped','Amazon','Amazon.in','SET316','Set','M','B09KXTXLMZ','Shipped','1','INR','1149','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-2644368-7969167','04-30-22','Shipped','Amazon','Amazon.in','J0006','Ethnic Dress','M','B0894WV6S6','Shipped','1','INR','845','Kakinada','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-1758807-7455529','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','S','B08XQ98B2Q','Shipped','1','INR','788','Haldia','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-5848202-7366725','04-30-22','Cancelled','Merchant','Amazon.in','JNE3800','Western Dress','XXL','B09SDYNZQ5','Unknown','0','INR','734.29','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-8224264-0017161','04-30-22','Shipped','Amazon','Amazon.in','SET268','Set','S','B08XQ98B2Q','Shipped','1','INR','788','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6529937-6381928','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','M','B0894XH3LN','Shipped','1','INR','654','Tivim','GOA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-2028379-9672355','04-30-22','Shipped','Amazon','Amazon.in','JNE2270','Kurta','L','B07H7FBV3Z','Shipped','1','INR','518','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-9221687-4573915','04-30-22','Shipped','Amazon','Amazon.in','SET345','Set','XXL','B09KXSQ73F','Shipped','1','INR','626','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-2668017-2013957','04-30-22','Shipped','Amazon','Amazon.in','PJNE3373','Kurta','6XL','B09LD3TCYP','Shipped','1','INR','534','Agra','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-3337319-8990747','04-30-22','Shipped','Amazon','Amazon.in','MEN5024','Kurta','M','B08YYTTNY5','Shipped','1','INR','475','Mandvi Kachchh District','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-1256885-2004349','04-30-22','Shipped','Amazon','Amazon.in','MEN5023','Kurta','XL','B08YZ22Q6R','Shipped','1','INR','549','Sambalpur','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-3723311-1030756','04-30-22','Shipped','Amazon','Amazon.in','JNE2270','Kurta','L','B07H7FBV3Z','Shipped','1','INR','518','Kanniyakumari','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-5542306-9306709','04-30-22','Cancelled','Amazon','Amazon.in','J0308','Western Dress','XL','B099NS3FWG','Cancelled','0','INR','0','Chinchwad ,Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-3702147-1800341','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3797','Western Dress','XS','B09SDY9SQ6','Shipped','1','INR','725','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-5867260-9073129','04-30-22','Cancelled','Merchant','Amazon.in','JNE3515','Kurta','XL','B09812MNZC','Unknown','0','INR','437.14','Chennai','TAMIL NADU','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-0532727-2082745','04-30-22','Shipped','Amazon','Amazon.in','J0225','Set','XXL','B09RKDP7D5','Shipped','1','INR','1499','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-8966287-7773106','04-30-22','Shipped','Amazon','Amazon.in','JNE3461','Kurta','L','B08B3YWTLK','Shipped','1','INR','363','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-1512444-4965152','04-30-22','Shipped','Amazon','Amazon.in','JNE3618','Kurta','XS','B091Q9S5ZK','Shipped','1','INR','399','Purnia','BIHAR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-9451879-3651542','04-30-22','Shipped','Amazon','Amazon.in','PJNE3405','Kurta','5XL','B09LD3PCNY','Shipped','1','INR','487','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-8501185-0578768','04-30-22','Cancelled','Amazon','Amazon.in','SET264','Set','XXL','B08YNK9K8F','Unshipped','1','INR','824','Puducherry','PUDUCHERRY','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-0251823-0845133','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3500','Kurta','S','B09812MBCD','Shipped','1','INR','353','Shillong','MEGHALAYA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-5190897-8781155','04-30-22','Shipped','Amazon','Amazon.in','JNE3690','Top','XL','B094FKN153','Shipped','1','INR','487','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-3109934-4911514','04-30-22','Shipped','Amazon','Amazon.in','SET374','Set','XS','B09NDKGZ6V','Shipped','1','INR','597','Tadepalligudem','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-0718034-7893108','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','XXL','B0894XKVH3','Shipped','1','INR','654','Ghaziabad','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-0752237-5721965','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','XXL','B09NQ3MPRM','Shipped','1','INR','597','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-6818986-3510737','04-30-22','Cancelled','Amazon','Amazon.in','JNE3461','Kurta','L','B08B3YWTLK','Unshipped','1','INR','363','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4673019-6572340','04-30-22','Shipped','Amazon','Amazon.in','JNE3368','Kurta','XXL','B081WSWWL7','Shipped','1','INR','471','Gwalior','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4549643-0067500','04-30-22','Cancelled','Amazon','Amazon.in','JNE2270','Kurta','XL','B07H7F6SKC','Cancelled','0','INR','0','Akola','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-3622512-3887551','04-30-22','Shipped','Amazon','Amazon.in','J0341','Western Dress','M','B099NQQ79L','Shipped','1','INR','744','Jorhat','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-6906315-9570765','04-30-22','Shipped','Amazon','Amazon.in','JNE3568','Kurta','S','B08KRYGJD1','Shipped','1','INR','399','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3562449-1962729','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0096','Kurta','S','B089G356KM','Shipped','1','INR','568','Ramanagara','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-2593644-6317933','04-30-22','Shipped','Amazon','Amazon.in','SET319','Set','S','B09KXV4TTM','Shipped','1','INR','835','Vijayapur','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-7607527-1189964','04-30-22','Shipped - Rejected by Buyer','Merchant','Amazon.in','J0096','Kurta','S','B089G356KM','Shipped','1','INR','568','Ramanagara','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-7398388-2654744','04-30-22','Shipped','Amazon','Amazon.in','J0415','Western Dress','L','B09TY1CM1M','Shipped','1','INR','899','Bokaro Steel City','JHARKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-5066690-4132337','04-30-22','Shipped','Amazon','Amazon.in','JNE3718','Kurta','XXL','B099NMS4LL','Shipped','1','INR','406','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6466311-6949931','04-30-22','Shipped','Amazon','Amazon.in','SET014','Set','XXL','B07JPDGGHY','Shipped','1','INR','0','Lucknow','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-4643830-2345965','04-30-22','Cancelled','Merchant','Amazon.in','SET408','Set','XXL','B09RKFHRZF','Unknown','0','INR','570.48','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-1051549-5381167','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3405','Kurta','M','B081WVMMCY','Shipped','1','INR','399','Khammam','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-7625210-8793109','04-30-22','Shipped','Amazon','Amazon.in','J0254','Set','XS','B09M6S1SRL','Shipped','1','INR','789','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8665288-2025908','04-30-22','Shipped','Amazon','Amazon.in','SAR114','Saree','Free','B09NDD3F72','Shipped','1','INR','620','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6732772-4525113','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','J0010','Set','XS','B08BJQVTHS','Shipped','1','INR','0','Aurangabad','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('171-7068385-2777168','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET186','Set','M','B08B4TP9NR','Shipped','1','INR','631','Pune','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-9930530-1209919','04-30-22','Shipped','Amazon','Amazon.in','JNE3819','Kurta','L','B09LTZ2CHY','Shipped','1','INR','499','Gadarwara','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-0288006-5535531','04-30-22','Shipped','Amazon','Amazon.in','J0335','Western Dress','L','B09831T4CQ','Shipped','1','INR','807','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-6363820-3080315','04-30-22','Shipped','Amazon','Amazon.in','SET334','Set','XXL','B09KXTKBG4','Shipped','1','INR','666','Puducherry','PUDUCHERRY','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-7937211-8974712','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','L','B09NQ44RNV','Shipped','1','INR','0','Shirdi','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4283259-6933941','04-30-22','Shipped','Amazon','Amazon.in','JNE3470','Kurta','XS','B08W9G1YSB','Shipped','1','INR','329','Vellore','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-3630361-4581152','04-30-22','Cancelled','Amazon','Amazon.in','JNE3619','Kurta','XS','B091Q8BKLW','Cancelled','0','INR','0','Vellore','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6348199-2089932','04-30-22','Shipped','Amazon','Amazon.in','J0283','Set','XL','B08QGKHDN3','Shipped','1','INR','0','Ranchi','JHARKHAND','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-5824761-8505932','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3440','Kurta','XL','B081WPK66G','Shipped','1','INR','399','Noida','UTTAR PRADESH','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-0673842-3693910','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','M','B08KRXV1QR','Shipped','1','INR','399','Mangaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-0722232-7258752','04-30-22','Shipped','Amazon','Amazon.in','JNE3787','Kurta','XXL','B09RKBXH45','Shipped','1','INR','487','Singrauli','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-0224364-7467540','04-30-22','Shipped','Amazon','Amazon.in','SET282','Set','XXL','B09CTF82YW','Shipped','1','INR','1033','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-2445040-0957913','04-30-22','Shipped','Amazon','Amazon.in','JNE3691','Top','L','B0986VTQL7','Shipped','1','INR','625','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8412164-3153129','04-30-22','Shipped','Amazon','Amazon.in','JNE3645','Top','L','B08ZHNGS54','Shipped','1','INR','432','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-5524319-6977912','04-30-22','Cancelled','Amazon','Amazon.in','JNE3727','Kurta','XXL','B09K3XLB6S','Cancelled','0','INR','0','Thrippunithura','KERALA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-7757868-6086759','04-30-22','Shipped','Amazon','Amazon.in','SET398','Set','M','B09RPRS8JL','Shipped','1','INR','1115','New Delhi','DELHI','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-5065107-7793119','04-30-22','Shipped','Amazon','Amazon.in','JNE3634','Kurta','XL','B097ZZLC2X','Shipped','1','INR','511','Ghaziabad','UTTAR PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-0216195-8439543','04-30-22','Shipped','Amazon','Amazon.in','SET291','Set','XL','B099NJV9X7','Shipped','1','INR','599','Kendujhar','ODISHA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-9874837-4557125','04-30-22','Shipped','Amazon','Amazon.in','JNE3675','Top','L','B09432M4NC','Shipped','1','INR','545','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-8892348-9765950','04-30-22','Shipped','Amazon','Amazon.in','JNE2199','Kurta','XXL','B07BL222Q1','Shipped','1','INR','353','Thane','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6417023-0253911','04-30-22','Shipped','Amazon','Amazon.in','SET184','Set','XXL','B08W8KNCDH','Shipped','1','INR','563','Thane','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-4004149-2857161','04-30-22','Shipped','Amazon','Amazon.in','JNE3639','Top','XXL','B08ZH7RVGJ','Shipped','1','INR','487','Kalyan','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6408992-6781106','04-30-22','Shipped','Amazon','Amazon.in','JNE3468','Kurta','L','B08RP69C9N','Shipped','1','INR','352','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-9345273-2408359','04-30-22','Shipped','Amazon','Amazon.in','JNE3373','Kurta','L','B082W7GVH7','Shipped','1','INR','376','Chennai','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-0266080-9401113','04-30-22','Shipped - Returned to Seller','Merchant','Amazon.in','J0213','Top','L','B0965KR7YJ','Shipped','1','INR','599','Gurugram','HARYANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('404-6096382-3389133','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','BL110','Blouse','XL','B0929B9QB7','Shipped','1','INR','329','Ludhiana','PUNJAB','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('405-9737320-3923530','04-30-22','Shipped','Amazon','Amazon.in','J0008','Set','XL','B0894X711G','Shipped','1','INR','1133','Nerul','GOA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-7908398-5262750','04-30-22','Shipped','Amazon','Amazon.in','SET288','Set','XXL','B09M6TQTGV','Shipped','1','INR','684','Imphal','MANIPUR','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-6861831-9368312','04-30-22','Cancelled','Amazon','Amazon.in','SET374','Set','XS','B09NDKGZ6V','Cancelled','0','INR','0','Palasbari','ASSAM','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-4290163-4557960','04-30-22','Cancelled','Amazon','Amazon.in','JNE3399','Kurta','L','B082W8354V','Unshipped','1','INR','435','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9000587-4386763','04-30-22','Shipped','Amazon','Amazon.in','JNE3405','Kurta','XL','B081WT6GG7','Shipped','1','INR','399','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-9000587-4386763','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','XL','B08KRTXC2Y','Shipped','1','INR','399','Pune','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-7760595-7490722','04-30-22','Cancelled','Amazon','Amazon.in','JNE3405','Kurta','XL','B081WT6GG7','Unshipped','1','INR','399','Chikkaballapur','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-8206114-6438765','04-30-22','Shipped','Amazon','Amazon.in','SET110','Set','L','B0822TBFW3','Shipped','1','INR','788','Andul Near Maya Stores','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-6734371-2217151','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','MEN5031','Kurta','3XL','B08YYT14HH','Shipped','1','INR','549','Bengaluru','KARNATAKA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('403-9844758-9663515','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','XS','B0894WW15B','Shipped','1','INR','654','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-1037282-5400318','04-30-22','Shipped','Amazon','Amazon.in','JNE3421','Kurta','M','B08TRHNH61','Shipped','1','INR','399','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-6497115-2636366','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET351','Set','L','B09KXVHNS4','Shipped','1','INR','599','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-2311178-4563550','04-30-22','Shipped','Amazon','Amazon.in','SET337','Set','L','B09KXY99M3','Shipped','1','INR','874','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-7904830-1900363','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','MEN5021','Kurta','XXL','B08YYSWWGK','Shipped','1','INR','533','Hyderabad','TELANGANA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('406-9476969-2801163','04-30-22','Shipped','Amazon','Amazon.in','JNE3567','Kurta','XXL','B08KRYCC8J','Shipped','1','INR','399','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-2867551-8904322','04-30-22','Shipped','Amazon','Amazon.in','J0338','Western Dress','L','B09832FGG4','Shipped','1','INR','744','Bengaluru','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('407-0133690-8157926','04-30-22','Shipped','Amazon','Amazon.in','MEN5009','Kurta','M','B08YYX8VKT','Shipped','1','INR','499','Surat','Gujarat','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-2892726-4411563','04-30-22','Cancelled','Amazon','Amazon.in','JNE3421','Kurta','M','B08TRHNH61','Unshipped','1','INR','399','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-9688522-2179563','04-30-22','Shipped','Amazon','Amazon.in','JNE3364','Kurta','L','B07WP5G7MK','Shipped','1','INR','376','Chittoor','ANDHRA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-7977517-7125147','04-30-22','Shipped','Amazon','Amazon.in','JNE3465','Kurta','XXL','B08BFT4ZKX','Shipped','1','INR','486','Kadur','KARNATAKA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('403-4009455-2766717','04-30-22','Shipped','Amazon','Amazon.in','JNE3568','Kurta','XXL','B08KRYXSYH','Shipped','1','INR','399','Suratgarh','RAJASTHAN','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-8960391-6097167','04-30-22','Cancelled','Amazon','Amazon.in','JNE3781','Kurta','3XL','B09K3WFS32','Cancelled','0','INR','0','Mira Road','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-9811989-3946709','04-30-22','Shipped','Amazon','Amazon.in','JNE2153','Kurta','XL','B0794V95XT','Shipped','1','INR','424','Mumbai','MAHARASHTRA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-0361691-7797129','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','JNE3487','Kurta','XXL','B08RNX8Q22','Shipped','1','INR','362','Mumbai','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-9628391-5712365','04-30-22','Shipped','Amazon','Amazon.in','JNE3865','Top','3XL','B09TZSJVFX','Shipped','1','INR','599','Dinanagar','PUNJAB','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('408-1587720-2667552','04-30-22','Shipped','Amazon','Amazon.in','SET324','Set','L','B09NQ44RNV','Shipped','1','INR','597','Kolkata','WEST BENGAL','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('171-5980259-5726757','04-30-22','Shipped','Amazon','Amazon.in','J0118','Top','XXL','B08N4QTQHW','Shipped','1','INR','487','Secunderabad','TELANGANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('405-2266530-9531500','04-30-22','Shipped - Delivered to Buyer','Merchant','Amazon.in','SET291','Set','3XL','B099NFZJVC','Shipped','1','INR','563','Kalyan','MAHARASHTRA','IN','FALSE','Easy Ship');
+INSERT INTO AMAZONSALE VALUES ('408-3468189-1632369','04-30-22','Shipped','Amazon','Amazon.in','JNE3704','Kurta','L','B099FD13MH','Shipped','1','INR','487','Arakandanallur','TAMIL NADU','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('402-8199412-5613164','04-30-22','Shipped','Amazon','Amazon.in','J0378','Set','XXL','B09QJ4HMHN','Shipped','1','INR','1099','Bhopal','MADHYA PRADESH','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('406-8049367-7383569','04-30-22','Shipped','Amazon','Amazon.in','J0003','Set','M','B0894XH3LN','Shipped','1','INR','654','Gurgaon','HARYANA','IN','FALSE','Unknown');
+INSERT INTO AMAZONSALE VALUES ('404-4084311-5014713','04-30-22','Shipped','Amazon','Amazon.in','JNE3721','Kurta','XL','B099FDMD6T','Shipped','1','INR','329','Hyderabad','TELANGANA','IN','FALSE','Unknown');
+
+-- =============================================
+-- ANALYSIS QUERIES
+-- =============================================
+
+-- Q1: Total Revenue
+SELECT ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE;
+
+-- Q2: Category wise Sales
+SELECT category, 
+       COUNT(*) AS total_orders, 
+       ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE
+GROUP BY category
+ORDER BY total_revenue DESC;
+
+-- Q3: Order Status Breakdown
+SELECT status, COUNT(*) AS count
+FROM AMAZONSALE
+GROUP BY status
+ORDER BY count DESC;
+
+-- Q4: Top 10 Cities by Sales
+SELECT ship_city, 
+       ROUND(SUM(amount), 2) AS total_sales
+FROM AMAZONSALE
+GROUP BY ship_city
+ORDER BY total_sales DESC
+LIMIT 10;
+
+-- Q5: Average Order Value
+SELECT ROUND(AVG(amount), 2) AS avg_order_value
+FROM AMAZONSALE;
+
+-- Q6: Top 5 States by Revenue
+SELECT ship_state, 
+       ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE
+GROUP BY ship_state
+ORDER BY total_revenue DESC
+LIMIT 5;
+
+-- Q7: B2B vs B2C Sales
+SELECT b2b, 
+       COUNT(*) AS total_orders,
+       ROUND(SUM(amount), 2) AS total_revenue
+FROM AMAZONSALE
+GROUP BY b2b;
+
+-- Q8: Size wise Orders
+SELECT size, COUNT(*) AS total_orders
+FROM AMAZONSALE
+GROUP BY size
+ORDER BY total_orders DESC;
+
+-- Q9: Fulfilment Method wise Sales
+SELECT fulfilment,
+       COUNT(*) AS orders,
+       ROUND(SUM(amount), 2) AS revenue
+FROM AMAZONSALE
+GROUP BY fulfilment;
+
+-- Q10: Top 5 Most Selling Products (Style)
+SELECT style,
+       COUNT(*) AS total_orders,
+       ROUND(SUM(amount), 2) AS revenue
+FROM AMAZONSALE
+GROUP BY style
+ORDER BY total_orders DESC
+LIMIT 5;
